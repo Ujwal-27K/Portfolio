@@ -1,5 +1,5 @@
 #PORTFOLIO
 <h2>WebPage Preview</h2>
-![Preview Img](files/WP1.png)
-![Preview Img](files/WP2.png)
-![Preview Img](files/WP3.png)
+<img src="WP1.png"  width="960" height="452">
+<img src="WP2.png"  width="960" height="452">
+<img src="WP3.png"  width="960" height="452">
