@@ -31,11 +31,15 @@ body{
 
 
 
-      /*---------------------------Header---------------------------*/
+/*---------------------------Header---------------------------*/
 
 .header-area{
   padding:25px 0;
   transition: padding .3s;
+}
+
+.navbar{
+  margin-left: 700px;
 }
 
 .header-area.sticky {
@@ -158,6 +162,7 @@ profile-photo .img{
   font-size: 18px;
   margin-right: 10px;
   transition: 0.5s;
+  padding-right: 10px;
 }
 .profile-text .social i:hover{
   color:#66fcf1;
