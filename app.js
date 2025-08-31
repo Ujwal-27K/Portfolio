@@ -36,7 +36,7 @@ const portfolioData = {
       demoUrl: "",
       codeUrl: "",
       featured: true,
-      status: "Ongoing",
+      status: "Upcoming",
     },
     {
       id: 3,
