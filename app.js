@@ -25,19 +25,18 @@ const portfolioData = {
       status: "Ongoing",
     },
     {
-      id: 2,
-      title: "Task Management App",
-      description:
-        "Modern task management application with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      image:
-        "https://www.shutterstock.com/image-vector/image-photo-placeholder-no-thumbnail-260nw-2502908919.jpg",
-      technologies: ["React", "Firebase", "Material-UI", "WebSocket"],
-      category: "Data Analytics",
-      demoUrl: "",
-      codeUrl: "",
-      featured: true,
-      status: "Upcoming",
-    },
+  "id": 2,
+  "title": "Online Retail Insights",
+  "description": "An end-to-end analytics dashboard for analyzing the UCI Online Retail II e-commerce dataset, featuring a React frontend with Material-UI, a Flask API backend, real-time updates with WebSocket, and a MySQL database for data storage.",
+  "image": "https://res.cloudinary.com/dx42z76dx/image/upload/v1756728381/Screenshot_2025-09-01_173508_vg9nyc.png",
+  "technologies": ["React", "Flask", "Material-UI", "Python Libraries", "MySQL"],
+  "category": "Data Analytics",
+  "demoUrl": "https://online-retail-insights.vercel.app/",
+  "codeUrl": "https://github.com/Ujwal-27K/online-retail-insights",
+  "featured": true,
+  "status": "Ongoing"
+},
+
     {
       id: 3,
       title: "Weather Forecast Dashboard",
