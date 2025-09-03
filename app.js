@@ -354,6 +354,94 @@ function searchProjects(searchTerm) {
   renderAllProjects();
 }
 
+// New functions to fetch and update LeetCode stats dynamically
+
+function updateLeetCodeStatsUI(stats) {
+  if (!stats) return;
+
+  const card = document.getElementById('leetcode-stats-card');
+  if (!card) return;
+
+  card.innerHTML = `
+    <h3>LeetCode</h3>
+    <div class="achievement-stats">
+      <div class="stat">
+        <span class="stat-number">${stats.totalSolved}</span>
+        <span class="stat-label">Problems Solved</span>
+      </div>
+      <div class="difficulty-breakdown">
+        <div class="difficulty easy">
+          <span>Easy: ${stats.easySolved}</span>
+        </div>
+        <div class="difficulty medium">
+          <span>Medium: ${stats.mediumSolved}</span>
+        </div>
+        <div class="difficulty hard">
+          <span>Hard: ${stats.hardSolved}</span>
+        </div>
+      </div>
+      <div class="ranking">Ranking: #${stats.ranking.toLocaleString()}</div>
+    </div>
+  `;
+}
+
+async function fetchLeetCodeStats(username) {
+  try {
+    const response = await fetch(`/api/leetcode?username=${username}`);
+    if (!response.ok) throw new Error('Failed to fetch LeetCode stats');
+    const data = await response.json();
+
+    const counts = { easySolved: 0, mediumSolved: 0, hardSolved: 0 };
+    data.submitStats.acSubmissionNum.forEach(item => {
+      if (item.difficulty.toLowerCase() === 'easy') counts.easySolved = item.count;
+      else if (item.difficulty.toLowerCase() === 'medium') counts.mediumSolved = item.count;
+      else if (item.difficulty.toLowerCase() === 'hard') counts.hardSolved = item.count;
+    });
+
+    return {
+      totalSolved: counts.easySolved + counts.mediumSolved + counts.hardSolved,
+      easySolved: counts.easySolved,
+      mediumSolved: counts.mediumSolved,
+      hardSolved: counts.hardSolved,
+      ranking: data.profile.ranking ?? 0
+    };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
+
+function updateLeetCodeStatsUI(stats) {
+  if (!stats) return;
+
+  const card = document.getElementById('leetcode-stats-card');
+  if (!card) return;
+
+  card.innerHTML = `
+    <h3>LeetCode</h3>
+    <div class="achievement-stats">
+      <div class="stat">
+        <span class="stat-number">${stats.totalSolved}</span>
+        <span class="stat-label">Problems Solved</span>
+      </div>
+      <div class="difficulty-breakdown">
+        <div class="difficulty easy">
+          <span>Easy: ${stats.easySolved}</span>
+        </div>
+        <div class="difficulty medium">
+          <span>Medium: ${stats.mediumSolved}</span>
+        </div>
+        <div class="difficulty hard">
+          <span>Hard: ${stats.hardSolved}</span>
+        </div>
+      </div>
+      <div class="ranking">Ranking: #${stats.ranking.toLocaleString()}</div>
+    </div>
+  `;
+}
+
 function renderSkills() {
   const container = document.getElementById("skills-container");
   container.innerHTML = "";
@@ -628,6 +716,8 @@ document.addEventListener("DOMContentLoaded", function () {
   renderTimeline();
   //renderBlog();
   renderCertificates();
+  
+  const leetcodeUsername = 'Ujwal_Khairnar'
 
   // Setup interactions
   setupIntersectionObserver();
@@ -646,6 +736,9 @@ document.addEventListener("DOMContentLoaded", function () {
     searchProjects(e.target.value);
   });
 
+  fetchLeetCodeStats(leetcodeUsername).then(stats => {
+  updateLeetCodeStatsUI(stats);
+  });
   // Contact form
   document.getElementById("contact-form").addEventListener("submit", (e) => {
     e.preventDefault();
