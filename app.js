@@ -80,13 +80,14 @@ const portfolioData = {
   title: "Responsive Portfolio Website",
   description: "Built a fully responsive static portfolio website showcasing projects, skills, and experience with modern design and smooth user interactions.",
   image: "https://res.cloudinary.com/dx42z76dx/image/upload/v1756651170/Screenshot_2025-08-31_200910_ybau3z.png",
-  technologies: ["React", "JavaScript", "CSS3", "HTML5", "Vite"],
+  technologies: ["JavaScript", "CSS3", "HTML5"],
   category: "Web Development",
   demoUrl: "https://portfolio-eta-blush-qsq9j1ksqi.vercel.app",
   codeUrl: "https://github.com/Ujwal-27K/Portfolio",
   featured: true,
   status: "Completed",
 },
+
   ],
   skills: {
     Languages: [
@@ -164,6 +165,22 @@ const portfolioData = {
       readTime: "8 min read",
       date: "2024-08-15",
       tags: ["React", "Architecture", "Best Practices"],
+    },
+  ],
+  certificates: [
+    {
+      title: "Front End Web Development Ultimate Guide",
+      description: "Learned HTML, CSS, JavaScript, and responsive design to build modern web applications.",
+      image: "https://udemy-certificate.s3.amazonaws.com/image/UC-909a5dd7-cec3-40b9-bc1b-e10d634084a9.jpg?v=1697136937000",
+      link: "https://ude.my/UC-909a5dd7-cec3-40b9-bc1b-e10d634084a9",
+      certNo: "UC-909a5dd7-cec3-40b9-bc1b-e10d634084a9"
+    },
+    {
+      title: "Beginning C++ Programming - From Beginner To Beyond",
+      description: "Covered C++ basics to advanced topics, object-oriented programming, and practical coding exercises.",
+      image: "https://udemy-certificate.s3.amazonaws.com/image/UC-15fb8846-81f6-45a0-ab08-74a2da917f92.jpg?v=1690802586000",
+      link: "https://ude.my/UC-15fb8846-81f6-45a0-ab08-74a2da917f92",
+      certNo: "UC-15fb8846-81f6-45a0-ab08-74a2da917f92"
     },
   ],
 };
@@ -452,6 +469,58 @@ function renderBlog() {
   });
 }
 
+function openCertificateModal(cert) {
+  const modal = document.getElementById('certificate-modal');
+  const body = document.getElementById('certificate-modal-body');
+
+  body.innerHTML = `
+    <img src="${cert.image}" alt="${cert.title}" />
+    <div class="certificate-title">${cert.title}</div>
+    <div class="certificate-meta">Certificate No.: ${cert.certNo}</div>
+    <div class="certificate-desc">${cert.description}</div>
+    <a href="${cert.link}" class="certificate-link" target="_blank" rel="noopener">View Certificate</a>
+  `;
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCertificateModal(event) {
+  if (event && event.target === event.currentTarget) {
+    // Only close when clicking backdrop
+    const modal = document.getElementById('certificate-modal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  } else if (!event) {
+    // Close called from close button
+    const modal = document.getElementById('certificate-modal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function renderCertificates() {
+  const container = document.getElementById('certificates-grid');
+  container.innerHTML = '';
+
+  portfolioData.certificates.forEach(cert => {
+    const card = document.createElement('div');
+    card.className = 'certificate-card';
+    card.innerHTML = `
+      <img src="${cert.image}" alt="${cert.title}" class="certificate-image"/>
+      <div class="certificate-content">
+        <div class="certificate-title">${cert.title}</div>
+        <div class="certificate-meta">Certificate No.: ${cert.certNo}</div>
+        <a href="${cert.link}" class="certificate-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">View Certificate</a>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openCertificateModal(cert));
+    container.appendChild(card);
+  });
+}
+
+
 function validateForm() {
   const form = document.getElementById("contact-form");
   const name = document.getElementById("name").value.trim();
@@ -558,6 +627,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderSkills();
   renderTimeline();
   //renderBlog();
+  renderCertificates();
 
   // Setup interactions
   setupIntersectionObserver();
@@ -610,6 +680,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetId = link.getAttribute("href").slice(1);
       scrollToSection(targetId);
     });
+  });
+
+  document.getElementById('certificate-modal').addEventListener('click', closeCertificateModal);
+  document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    closeCertificateModal();
+  }
   });
 
   // Close modal when clicking outside
