@@ -444,6 +444,53 @@ function updateLeetCodeStatsUI(stats) {
     </div>
   `;
 }
+// Fetch GitHub stats: public repos count and total stars
+async function fetchGitHubStats(username) {
+  try {
+    // Fetch user info for public repo count
+    const userResponse = await fetch(`https://api.github.com/users/${username}`);
+    if (!userResponse.ok) throw new Error("Failed to fetch user info");
+    const userData = await userResponse.json();
+
+    // Fetch repositories list (max 100 repos)
+    const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+    if (!reposResponse.ok) throw new Error("Failed to fetch repositories");
+    const reposData = await reposResponse.json();
+
+    // Calculate total stars
+    const totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+
+    return {
+      publicRepos: userData.public_repos,
+      totalStars: totalStars,
+    };
+  } catch (error) {
+    console.error("GitHub stats fetch error:", error);
+    return null;
+  }
+}
+
+// Update GitHub stats UI dynamically
+function updateGitHubStatsUI(stats) {
+  if (!stats) return;
+
+  const card = document.getElementById("github-stats-card");
+  if (!card) return;
+
+  card.innerHTML = `
+    <h3>GitHub</h3>
+    <div class="achievement-stats">
+      <div class="stat">
+        <span class="stat-number">${stats.publicRepos}</span>
+        <span class="stat-label">Repositories</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">${stats.totalStars}</span>
+        <span class="stat-label">Stars</span>
+      </div>
+    </div>
+  `;
+}
 
 function renderSkills() {
   const container = document.getElementById("skills-container");
@@ -721,6 +768,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderCertificates();
   
   const leetcodeUsername = 'Ujwal_Khairnar'
+  const githubUsername = 'Ujwal-27K';
 
   // Setup interactions
   setupIntersectionObserver();
@@ -741,6 +789,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetchLeetCodeStats(leetcodeUsername).then(stats => {
   updateLeetCodeStatsUI(stats);
+  });
+  fetchGitHubStats(githubUsername).then(stats => {
+  updateGitHubStatsUI(stats);
   });
   // Contact form
   document.getElementById("contact-form").addEventListener("submit", (e) => {
