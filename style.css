@@ -1486,6 +1486,180 @@ body {
   font-size: var(--font-size-sm);
 }
 
+/* Certificate Section */
+.certificates-section {
+  margin: 40px 0;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  justify-content: center; /* center the grid content horizontally */
+  gap: var(--space-32);
+  max-width: 700px;  /* max width so only 2 cards fit nicely */
+  margin: 0 auto; /* center container on page */
+}
+
+
+.certificate-card {
+  background: var(--netflix-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.certificate-card:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.certificate-image {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  display: block;
+  background: #222;
+  border-radius: 4px 4px 0 0;
+}
+
+.certificate-content {
+  padding: 16px;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.certificate-title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.certificate-meta {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.certificate-link {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-radius: var(--radius-base);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: background 0.2s;
+}
+
+.certificate-link:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Modal Styles (matches existing modal) */
+#certificate-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#certificate-modal.hidden {
+  display: none;
+}
+
+#certificate-modal .modal-content {
+  background: var(--netflix-card-bg);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  padding: var(--space-32);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+}
+
+#certificate-modal .modal-close {
+  position: absolute;
+  top: var(--space-16);
+  right: var(--space-16);
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: var(--font-size-lg);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  z-index: 10;
+}
+
+#certificate-modal .modal-body img {
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-24);
+}
+
+#certificate-modal .modal-body .certificate-title {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-12);
+  text-align: center;
+}
+
+#certificate-modal .modal-body .certificate-meta {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-16);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+#certificate-modal .modal-body .certificate-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--space-24);
+  white-space: normal;
+}
+
+#certificate-modal .modal-body .certificate-link {
+  display: block;
+  text-align: center;
+  font-size: var(--font-size-md);
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-base);
+  color: var(--color-btn-primary-text);
+  background: var(--color-primary);
+  text-decoration: none;
+  max-width: 200px;
+  margin: 0 auto;
+  transition: background 0.2s;
+}
+
+#certificate-modal .modal-body .certificate-link:hover {
+  background: var(--color-primary-hover);
+}
+
 /* Contact Section */
 .contact-section {
   padding: 80px 0;
