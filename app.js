@@ -391,20 +391,23 @@ async function fetchLeetCodeStats(username) {
     if (!response.ok) throw new Error('Failed to fetch LeetCode stats');
     const data = await response.json();
 
-    const counts = { easySolved: 0, mediumSolved: 0, hardSolved: 0 };
-    data.submitStats.acSubmissionNum.forEach(item => {
-      if (item.difficulty.toLowerCase() === 'easy') counts.easySolved = item.count;
-      else if (item.difficulty.toLowerCase() === 'medium') counts.mediumSolved = item.count;
-      else if (item.difficulty.toLowerCase() === 'hard') counts.hardSolved = item.count;
-    });
+    const counts = { easySolved: 0, mediumSolved: 0, hardSolved: 0, totalSolved: 0 };
+data.submitStats.acSubmissionNum.forEach(item => {
+  const diff = item.difficulty.toLowerCase();
+  if (diff === 'easy') counts.easySolved = item.count;
+  else if (diff === 'medium') counts.mediumSolved = item.count;
+  else if (diff === 'hard') counts.hardSolved = item.count;
+  else if (diff === 'all') counts.totalSolved = item.count; // total count from LeetCode
+});
 
-    return {
-      totalSolved: counts.easySolved + counts.mediumSolved + counts.hardSolved,
-      easySolved: counts.easySolved,
-      mediumSolved: counts.mediumSolved,
-      hardSolved: counts.hardSolved,
-      ranking: data.profile.ranking ?? 0
-    };
+return { 
+  totalSolved: counts.totalSolved,  // Use total from 'All' for accuracy
+  easySolved: counts.easySolved,
+  mediumSolved: counts.mediumSolved,
+  hardSolved: counts.hardSolved,
+  ranking: data.profile.ranking ?? 0
+};
+
   } catch (error) {
     console.error(error);
     return null;

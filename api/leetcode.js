@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 module.exports = async (req, res) => {
   const username = req.query.username;
   if (!username) {
@@ -34,7 +32,7 @@ module.exports = async (req, res) => {
     });
     const json = await response.json();
 
-    if(json.errors) {
+    if (json.errors) {
       res.status(404).json({ error: 'User not found' });
       return;
     }
