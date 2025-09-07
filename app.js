@@ -185,7 +185,7 @@ const portfolioData = {
     {
     title: "SQL (Intermediate) Certificate - HackerRank",
     description: "Demonstrated proficiency in SQL queries, joins, aggregations, subqueries, and advanced data manipulation techniques through problem-solving on HackerRank.",
-    image: "https://www.hackerrank.com/certificates/iframe/1ad4f32511f0",
+    image: "https://res.cloudinary.com/dx42z76dx/image/upload/v1757236028/SQL_INTERMEDIATE_gqmspt.png",
     link: "https://www.hackerrank.com/certificates/1ad4f32511f0",
     certNo: "1AD4F32511F0"
     },
