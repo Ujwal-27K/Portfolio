@@ -34,7 +34,7 @@ const portfolioData = {
   "demoUrl": "https://online-retail-insights.vercel.app/",
   "codeUrl": "https://github.com/Ujwal-27K/online-retail-insights",
   "featured": true,
-  "status": "Ongoing"
+  "status": "Completed"
 },
 
     {
