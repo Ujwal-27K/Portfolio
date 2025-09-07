@@ -182,6 +182,13 @@ const portfolioData = {
       link: "https://ude.my/UC-15fb8846-81f6-45a0-ab08-74a2da917f92",
       certNo: "UC-15fb8846-81f6-45a0-ab08-74a2da917f92"
     },
+    {
+    title: "SQL (Intermediate) Certificate - HackerRank",
+    description: "Demonstrated proficiency in SQL queries, joins, aggregations, subqueries, and advanced data manipulation techniques through problem-solving on HackerRank.",
+    image: "https://www.hackerrank.com/certificates/iframe/1ad4f32511f0",
+    link: "https://www.hackerrank.com/certificates/1ad4f32511f0",
+    certNo: "1AD4F32511F0"
+    },
   ],
 };
 
