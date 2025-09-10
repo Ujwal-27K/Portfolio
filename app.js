@@ -86,7 +86,19 @@ const portfolioData = {
   codeUrl: "https://github.com/Ujwal-27K/Portfolio",
   featured: true,
   status: "Completed",
-},
+    },
+    {
+      id: 7,
+      title: "Joke Telling Bot",
+      description: "A full-featured voice-enabled joke telling bot built with React and the Web Speech API. Features text-to-speech, voice commands, keyboard shortcuts, multiple voice options, and customizable speech settings with a modern dark UI.",
+      image: "https://res.cloudinary.com/dx42z76dx/image/upload/v1757513043/Screenshot_2025-09-10_193234_uukxb4.png",
+      technologies: ["React", "Web Speech API", "JavaScript", "CSS3", "JokeAPI", "Voice Recognition"],
+      category: "Web Development",
+      demoUrl: "https://joke-telling-bot-rho.vercel.app/",
+      codeUrl: "https://github.com/Ujwal-27K/joke-telling-bot",
+      featured: true,
+      status: "Completed"
+    },
 
   ],
   skills: {
