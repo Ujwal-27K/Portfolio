@@ -6,7 +6,7 @@ const portfolioData = {
       title: "MERN E-commerce Platform",
       description:
         "A full-stack MERN e-commerce web application featuring secure user authentication, product browsing, shopping cart, order management, and admin dashboard, built with React, Node.js, Express, and MongoDB.",
-      image: "https://media.geeksforgeeks.org/wp-content/uploads/20240319013954/Screenshot-2024-03-19-013706.png",
+      image: "https://res.cloudinary.com/dx42z76dx/image/upload/v1757519285/Screenshot_2025-09-10_203001_bubjf7.png",
       technologies: [
         "React",
         "Redux Toolkit",
