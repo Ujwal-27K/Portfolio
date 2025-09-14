@@ -241,10 +241,11 @@
   --color-info: var(--color-gray-300);
   --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
   --color-btn-primary-text: var(--color-slate-900);
-  --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
   --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
   --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
   --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
   --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
 
@@ -1488,70 +1489,71 @@ body {
 
 /* Certificate Section */
 .certificates-section {
-  margin: 40px 0;
+  padding: 80px 0;
 }
 
 .certificates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  justify-content: center; /* center the grid content horizontally */
-  gap: var(--space-32);
-  max-width: 700px;  /* max width so only 2 cards fit nicely */
-  margin: 0 auto; /* center container on page */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+  margin: 0 auto;
+  width: 100%;
 }
-
 
 .certificate-card {
   background: var(--netflix-card-bg);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s ease;
-  max-width: 450px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  /* Remove flex/grid stretching */
+  box-shadow: none;
+  padding: 0;
 }
 
 .certificate-card:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .certificate-image {
   width: 100%;
-  height: auto;
-  max-height: 180px;
-  object-fit: contain;
-  display: block;
+  height: 200px;
   background: #222;
-  border-radius: 4px 4px 0 0;
+  object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: block;
 }
 
 .certificate-content {
-  padding: 16px;
+  padding: var(--space-20);
   color: var(--color-text);
   text-align: center;
 }
 
 .certificate-title {
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-12);
   word-break: break-word;
 }
 
 .certificate-meta {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-12);
   word-break: break-word;
 }
 
 .certificate-link {
-  display: inline-block;
-  padding: 6px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto 0 auto;
+  padding: 8px 16px;
   background: var(--color-primary);
   color: var(--color-btn-primary-text);
   border-radius: var(--radius-base);
