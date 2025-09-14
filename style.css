@@ -1489,7 +1489,8 @@ body {
 
 /* Certificate Section */
 .certificates-section {
-  padding: 0 0;
+  background: var(--netflix-card-bg);
+  padding: 80px 0;
 }
 
 .certificates-grid {
