@@ -20,5 +20,12 @@ const certificates = [
     link: "https://www.hackerrank.com/certificates/1ad4f32511f0",
     certNo: "1AD4F32511F0"
   },
+  {
+  title: "Merit Certificate - Naukri Young Turks 2025 (Round 1)",
+  description: "Awarded a merit certificate for outstanding performance in Round 1 of the Naukri Young Turks 2025 competition, showcasing skills in problem-solving, innovation, and technology challenges.",
+  image: "https://media.naukri.com/media/nccontcert/l444%253ALuAMAkberXd6ftfGICBJa5k1xXsoI809hlJ%252Bl9AwszwzVCFW1rojOjW9r73jMOPPU44%253D",
+  link: "https://www.naukri.com/campus/certificates/young_turks25_round_1_achievement/v0/68d9c57d7659006d373b3dba?utm_source=certificate&utm_medium=copy&utm_campaign=68d9c57d7659006d373b3dba",
+  certNo: "68d9c57d7659006d373b3dba"
+  },
 ];
 export default certificates;
