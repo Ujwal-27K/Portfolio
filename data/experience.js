@@ -14,23 +14,9 @@ const experience = [
       "Contributed to website modifications",
       "Implemented responsive UI components",
       "Collaborated with development team remotely",
+      "Learned modern web development frameworks",
     ],
   },
-  {
-    id: 2,
-    type: "Education",
-    title: "B.E. Computer Science",
-    company: "Savitribai Phule Pune University",
-    location: "Pune, India",
-    startDate: "2021-11",
-    endDate: "2025-06",
-    current: false,
-    description:
-      "Bachelor of Engineering (2021-2025) from Dr. D Y Patil Institute of Engineering Management and Research, Akurdi, Pune.",
-    achievements: [
-      "Maintained a GPA of 8.09/10",
-      "organized the Smart India Hackathon (SIH) at the institute.",
-    ],
-  },
+  // Add more experience entries here later
 ];
 export default experience;

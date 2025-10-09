@@ -6,23 +6,13 @@ let filteredProjects = portfolioData.projects;
 
 // Utility functions
 function scrollToSection(sectionId) {
-
-  // Update filter buttons
-  document.querySelectorAll(".filter-btn").forEach((btn) => {
-    btn.classList.remove("active");
-  });
-  document.querySelector(`[data-filter="${category}"]`).classList.add("active");
-
-  // Filter projects
-  if (category === "all") {
-    filteredProjects = portfolioData.projects;
-  } else {
-    filteredProjects = portfolioData.projects.filter(
-      (project) => project.category === category
-    );
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
-
-  renderAllProjects();
 }
 
 function searchProjects(searchTerm) {
@@ -167,15 +157,9 @@ function renderSkills() {
     const skillsHTML = skills
       .map(
         (skill) => `
-      <div class="skill-item">
+      <div class="skill-badge">
         <span class="skill-icon">${skill.icon}</span>
-        <div class="skill-info">
-          <div class="skill-name">${skill.name}</div>
-          <div class="skill-progress">
-            <div class="skill-progress-bar" data-level="${skill.level}"></div>
-          </div>
-        </div>
-        <span class="skill-level">${skill.level}%</span>
+        <span class="skill-name">${skill.name}</span>
       </div>
     `
       )
@@ -183,23 +167,17 @@ function renderSkills() {
 
     categoryDiv.innerHTML = `
       <h3>${category}</h3>
-      ${skillsHTML}
+      <div class="skills-badges-container">
+        ${skillsHTML}
+      </div>
     `;
 
     container.appendChild(categoryDiv);
   });
-
-  // Animate progress bars when they come into view
-  setTimeout(() => {
-    document.querySelectorAll(".skill-progress-bar").forEach((bar) => {
-      const level = bar.getAttribute("data-level");
-      bar.style.width = level + "%";
-    });
-  }, 100);
 }
 
-function renderTimeline() {
-  const container = document.getElementById("timeline-container");
+function renderExperienceTimeline() {
+  const container = document.getElementById("experience-timeline-container");
   container.innerHTML = "";
 
   portfolioData.experience.forEach((item) => {
@@ -231,11 +209,47 @@ function renderTimeline() {
   });
 }
 
+function renderEducationTimeline() {
+  const container = document.getElementById("education-timeline-container");
+  container.innerHTML = "";
+
+  portfolioData.education.forEach((item) => {
+    const timelineItem = document.createElement("div");
+    timelineItem.className = "timeline-item";
+
+    const startDate = formatDate(item.startDate);
+    const endDate = item.current ? "Present" : formatDate(item.endDate);
+    const dateRange = `${startDate} - ${endDate}`;
+
+    const achievementsHTML = item.achievements
+      .map((achievement) => `<li>${achievement}</li>`)
+      .join("");
+
+    timelineItem.innerHTML = `
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">${item.title}</h3>
+        <div class="timeline-company">${item.institution || item.college}</div>
+        <div class="timeline-date">${dateRange} • ${item.location}</div>
+        <p class="timeline-description">${item.description}</p>
+        <ul class="timeline-achievements">
+          ${achievementsHTML}
+        </ul>
+      </div>
+    `;
+
+    container.appendChild(timelineItem);
+  });
+}
+
 function renderBlog() {
   const container = document.getElementById("blog-container");
   container.innerHTML = "";
 
-  portfolioData.blog.forEach((post) => {
+  // Show only first 3 blog posts on homepage
+  const limitedBlogs = portfolioData.blog.slice(0, 3);
+
+  limitedBlogs.forEach((post) => {
     const blogCard = document.createElement("div");
     blogCard.className = "blog-card";
 
@@ -344,7 +358,10 @@ function renderCertificates() {
   const container = document.getElementById('certificates-grid');
   container.innerHTML = '';
 
-  portfolioData.certificates.forEach(cert => {
+  // Show only first 3 certificates on homepage
+  const limitedCertificates = portfolioData.certificates.slice(0, 3);
+
+  limitedCertificates.forEach(cert => {
     const card = document.createElement('div');
     card.className = 'certificate-card';
     card.innerHTML = `
@@ -424,18 +441,26 @@ function setupIntersectionObserver() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add('visible');
       }
     });
   }, observerOptions);
 
   // Observe sections
   document.querySelectorAll("section").forEach((section) => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
     observer.observe(section);
+  });
+}
+
+function setupScrollProgressIndicator() {
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    scrollIndicator.style.transform = `scaleX(${scrollPercent / 100})`;
   });
 }
 
@@ -569,6 +594,20 @@ function closeModal() {
   document.body.style.overflow = "auto";
 }
 
+function renderFeaturedProjects() {
+  const container = document.getElementById("featured-projects-grid");
+  container.innerHTML = "";
+
+  // Show only first 3 featured projects on homepage
+  const featuredProjects = portfolioData.projects.filter(project => project.featured).slice(0, 3);
+
+  featuredProjects.forEach((project) => {
+    const card = createProjectCard(project, true);
+    card.className = "featured-project-card";
+    container.appendChild(card);
+  });
+}
+
 function renderAllProjects() {
   const container = document.getElementById("all-projects-grid");
   container.innerHTML = "";
@@ -604,9 +643,10 @@ function filterProjects(category) {
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
   // Render all sections
-  renderAllProjects();
+  renderFeaturedProjects();
   renderSkills();
-  renderTimeline();
+  renderExperienceTimeline();
+  renderEducationTimeline();
   renderBlog();
   renderCertificates();
   
@@ -616,6 +656,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Setup interactions
   setupIntersectionObserver();
   setupSmoothScrolling();
+  setupScrollProgressIndicator();
 
   // Project filtering
   document.querySelectorAll(".filter-btn").forEach((btn) => {
@@ -637,12 +678,41 @@ document.addEventListener("DOMContentLoaded", function () {
   updateGitHubStatsUI(stats);
   });
   // Contact form
-  document.getElementById("contact-form").addEventListener("submit", (e) => {
+  document.getElementById("contact-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Simulate form submission
-      alert("Thank you for your message! I'll get back to you soon.");
-      document.getElementById("contact-form").reset();
+      const submitButton = e.target.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+
+      try {
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert("Thank you for your message! I'll get back to you soon.");
+          document.getElementById("contact-form").reset();
+        } else {
+          alert(result.error || 'Failed to send message. Please try again.');
+        }
+      } catch (error) {
+        console.error('Contact form error:', error);
+        alert('Failed to send message. Please try again later.');
+      } finally {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      }
     }
   });
 

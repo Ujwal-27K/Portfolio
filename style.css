@@ -1218,9 +1218,70 @@ body {
   margin-left: var(--space-8);
 }
 
+/* New Skill Badges Styles */
+.skills-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  justify-content: center;
+}
+
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  background: linear-gradient(135deg, var(--netflix-card-bg) 0%, rgba(229, 9, 20, 0.1) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.2);
+  border-color: var(--color-primary);
+}
+
+.skill-badge:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 0.6s ease-out;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.skill-badge .skill-icon {
+  font-size: var(--font-size-lg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.skill-badge .skill-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+
 /* Experience Timeline */
 .experience-section {
   padding: 80px 0;
+}
+
+/* Education Timeline */
+.education-section {
+  padding: 80px 0;
+  background: var(--netflix-dark-gray);
 }
 
 .timeline {
@@ -1341,6 +1402,24 @@ body {
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--netflix-dark-red));
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(229, 9, 20, 0.2);
 }
 
 .achievement-card h3 {
@@ -1826,6 +1905,143 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Enhanced UI/UX Improvements */
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced button styles */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced section transitions */
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced card hover effects */
+.project-card, .blog-card, .certificate-card {
+  position: relative;
+}
+
+.project-card::before, .blog-card::before, .certificate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(229, 9, 20, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.project-card:hover::before, .blog-card:hover::before, .certificate-card:hover::before {
+  opacity: 1;
+}
+
+/* Loading animation for stats */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.stat-number:empty {
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+  height: 2rem;
+  animation: pulse 1.5s infinite;
+}
+
+/* Enhanced navbar */
+.navbar {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--netflix-dark-red));
+  z-index: 9999;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+/* Enhanced modal animations */
+.modal {
+  backdrop-filter: blur(10px);
+}
+
+.modal:not(.hidden) .modal-content {
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Enhanced form styles */
+.form-control:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 /* Responsive Design */

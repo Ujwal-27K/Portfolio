@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Certificates - Ujwal Khairnar</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <a href="/" style="color: inherit; text-decoration: none;">Ujwal Khairnar</a>
+        </div>
+        <div class="nav-menu">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/pages/projects.html" class="nav-link">Projects</a>
+          <a href="/#skills" class="nav-link">Skills</a>
+          <a href="/#experience" class="nav-link">Experience</a>
+          <a href="/#achievements" class="nav-link">Achievements</a>
+          <a href="/pages/blogs.html" class="nav-link">Blog</a>
+          <a href="/pages/certificates.html" class="nav-link active">Certificates</a>
+          <a href="/#contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Certificates Section -->
+    <section class="certificates-section" style="padding-top: 100px;">
+      <div class="container">
+        <div class="projects-header">
+          <h1 class="section-title">All Certificates</h1>
+          <div class="projects-controls">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search certificates..."
+              id="certificate-search"
+            />
+          </div>
+        </div>
+        <div class="certificates-grid" id="all-certificates-grid"></div>
+      </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="modal hidden" onclick="closeCertificateModal(event)">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeCertificateModal()">×</button>
+        <div id="certificate-modal-body" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          Built by
+          <a
+            href="https://portfolio-eta-blush-qsq9j1ksqi.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <strong>Ujwal Khairnar</strong>
+          </a>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="../js/certificates.js"></script>
+  </body>
+</html>

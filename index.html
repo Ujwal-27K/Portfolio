@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scroll-indicator"></div>
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
         <div class="nav-brand">Ujwal Khairnar</div>
         <div class="nav-menu">
           <a href="#hero" class="nav-link">Home</a>
-          <a href="#all-projects" class="nav-link">Projects</a>
+          <a href="#projects" class="nav-link">Projects</a>
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#experience" class="nav-link">Experience</a>
+          <a href="#education" class="nav-link">Education</a>
           <a href="#achievements" class="nav-link">Achievements</a>
           <a href="#blog" class="nav-link">Blog</a>
           <a href="#certificates" class="nav-link">Certificates</a>
@@ -58,30 +61,14 @@
       </div>
     </section>
 
-    <!-- All Projects Grid -->
-    <section class="all-projects" id="all-projects">
+    <!-- Featured Projects -->
+    <section class="featured-projects" id="projects">
       <div class="container">
-        <div class="projects-header">
-          <h2 class="section-title">All Projects</h2>
-          <div class="projects-controls">
-            <div class="project-filters">
-              <button class="filter-btn active" data-filter="all">All</button>
-              <button class="filter-btn" data-filter="Web Development">
-                Web Development
-              </button>
-              <button class="filter-btn" data-filter="Data Analytics">
-                Data Analytics
-              </button>
-            </div>
-            <input
-              type="text"
-              class="search-input"
-              placeholder="Search projects..."
-              id="project-search"
-            />
-          </div>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="featured-projects-row" id="featured-projects-grid"></div>
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+          <a href="/pages/projects.html" class="btn btn--primary">View All Projects</a>
         </div>
-        <div class="projects-grid" id="all-projects-grid"></div>
       </div>
     </section>
 
@@ -96,8 +83,16 @@
     <!-- Experience Timeline -->
     <section id="experience" class="experience-section">
       <div class="container">
-        <h2 class="section-title">Experience & Education</h2>
-        <div class="timeline" id="timeline-container"></div>
+        <h2 class="section-title">Work Experience</h2>
+        <div class="timeline" id="experience-timeline-container"></div>
+      </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section id="education" class="education-section">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline" id="education-timeline-container"></div>
       </div>
     </section>
 
@@ -166,16 +161,22 @@
       <div class="container">
         <h2 class="section-title">Latest Blog Posts</h2>
         <div class="blog-grid" id="blog-container"></div>
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+          <a href="/pages/blogs.html" class="btn btn--primary">View All Blogs</a>
+        </div>
       </div>
     </section>
     
     <!-- Certificates Section -->
-  <section id="certificates" class="certificates-section">
-    <div class="container">
-      <h2 class="section-title">Certificates</h2>
-      <div class="certificates-grid" id="certificates-grid"></div>
-    </div>
-  </section>
+    <section id="certificates" class="certificates-section">
+      <div class="container">
+        <h2 class="section-title">Recent Certificates</h2>
+        <div class="certificates-grid" id="certificates-grid"></div>
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+          <a href="/pages/certificates.html" class="btn btn--primary">View All Certificates</a>
+        </div>
+      </div>
+    </section>
 
 
 
