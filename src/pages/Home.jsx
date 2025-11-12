@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 // 🖼️ Import Assets
-const photo = "/photo.png";
+const photo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1756643349/me_photo_pfni9n.png";
 const githubLogo = "/github.png";
 const linkedinLogo = "/linkedin.png";
 const gmailLogo = "/gmail.png";

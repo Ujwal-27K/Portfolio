@@ -1,52 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
-
-const USERNAME = "Ujwal_Khairnar";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function Stats() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState("");
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const query = `
-          query getUserProfile($username: String!) {
-            matchedUser(username: $username) {
-              username
-              profile {
-                reputation
-                ranking
-                userAvatar
-              }
-              submitStats {
-                acSubmissionNum {
-                  difficulty
-                  count
-                }
-              }
-            }
-          }
-        `;
-
-        const apiURL =
-          window.location.hostname === "localhost"
-            ? "https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql"
-            : "https://leetcode.com/graphql";
-
-        const response = await fetch(apiURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query, variables: { username: USERNAME } }),
-        });
-
+        const response = await fetch("/api/leetcode");
         const data = await response.json();
-        setStats(data.data.matchedUser);
+
+        if (data?.data?.matchedUser) {
+          setStats(data.data.matchedUser);
+          setLastUpdated(new Date().toLocaleString());
+        } else {
+          setStats(null);
+        }
       } catch (error) {
         console.error("Error fetching LeetCode stats:", error);
+        setStats(null);
       } finally {
         setLoading(false);
       }
@@ -86,15 +71,15 @@ export default function Stats() {
           padding: "4rem",
         }}
       >
-        ❌ Couldn’t load stats. Please check your username or try again later.
+        ❌ Couldn’t load stats. Please try again later.
       </div>
     );
   }
 
-  const easy = stats.submitStats.acSubmissionNum[1].count;
-  const medium = stats.submitStats.acSubmissionNum[2].count;
-  const hard = stats.submitStats.acSubmissionNum[3].count;
-  const total = stats.submitStats.acSubmissionNum[0].count;
+  const easy = stats.submitStats.acSubmissionNum[1]?.count || 0;
+  const medium = stats.submitStats.acSubmissionNum[2]?.count || 0;
+  const hard = stats.submitStats.acSubmissionNum[3]?.count || 0;
+  const total = stats.submitStats.acSubmissionNum[0]?.count || 0;
 
   const chartData = [
     { name: "Easy", value: easy },
@@ -157,10 +142,21 @@ export default function Stats() {
         <p>🏆 Reputation: {stats.profile.reputation}</p>
         <p>📊 Global Rank: {stats.profile.ranking}</p>
 
-        <hr style={{ border: "1px solid rgba(255,255,255,0.1)", margin: "1rem 0" }} />
+        <hr
+          style={{
+            border: "1px solid rgba(255,255,255,0.1)",
+            margin: "1rem 0",
+          }}
+        />
 
         {/* Stats Counters */}
-        <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "1.5rem" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginBottom: "1.5rem",
+          }}
+        >
           <motion.div whileHover={{ scale: 1.1 }}>
             <h3 style={{ color: "#0f0" }}>Easy</h3>
             <p>{easy}</p>
@@ -187,7 +183,10 @@ export default function Stats() {
                 label
               >
                 {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
                 ))}
               </Pie>
               <Tooltip />
@@ -214,6 +213,10 @@ export default function Stats() {
         >
           ✅ Total Solved: {total}
         </motion.h2>
+
+        <p style={{ marginTop: "1rem", fontSize: "0.9rem", color: "#aaa" }}>
+          ⏱ Last updated: {lastUpdated}
+        </p>
       </motion.div>
     </section>
   );
