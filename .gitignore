@@ -1,23 +1,53 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 🧱 Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# 🏗️ Build output
+dist/
+build/
+.cache/
+coverage/
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
+# ⚙️ Environment files
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# 🧰 Editor & system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 🔧 Log files
+*.log
+
+# 🧪 Test coverage
+coverage/
+jest/
+
+# 🔥 Optional: Vite-specific cache
+.vite/
+
+# 🪣 Temporary files
+tmp/
+temp/
+
+# 🚀 Deployment
+.vercel/
+.netlify/
+
+# 📸 Screenshots / local assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4

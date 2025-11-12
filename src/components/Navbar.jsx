@@ -1,145 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const links = [
+  { label: "Home", to: "/" },
+  { label: "Projects", to: "/projects" },
+  /*
+  { label: "Gallery", to: "/gallery" },
+   */
+  { label: "Skills", to: "/skills" },
+  { label: "Certificates", to: "/certificates" },
+  /*
+  { label: "Blog", to: "/blog" },
+   */
+  { label: "Resume", to: "/resume" },
+  { label: "Stats", to: "/stats" },
+  { label: "About me", to: "/about" },
+  { label: "Contact", to: "/contact" },
+];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
+export default function Navbar() {
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container">
-        <div className="navbar-logo">
-          <Link to="home" smooth={true} duration={500} onClick={closeMobileMenu}>
-            Portfolio
-          </Link>
-        </div>
-        
-        <div className="menu-icon" onClick={toggleMobileMenu}>
-          <div className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}>
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav
+      className="nav"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0.8rem 2rem",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        background: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(10px)",
+      }}
+    >
+      {/* --- Left Logo + Name --- */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <motion.div
+          className="logo"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 200 }}
+          style={{
+            fontWeight: "bold",
+            fontSize: "1.4rem",
+            color: "var(--accent)",
+          }}
+        >
+          UK
+        </motion.div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <h1 style={{ margin: 0, fontSize: 14 }}>Ujwal Khairnar</h1>
+          <div style={{ fontSize: 12, color: "var(--muted)" }}>
+            AI • Developer
           </div>
         </div>
+      </div>
 
-        <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-          <li className="nav-item">
-            <Link
-              to="home"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="projects"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Projects
-            </Link>
-          </li>
-          {/* Gallery link hidden but can be enabled in future */}
-          {/* <li className="nav-item" style={{ display: 'none' }}>
-            <Link
-              to="gallery"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Gallery
-            </Link>
-          </li> */}
-          <li className="nav-item">
-            <Link
-              to="skills"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Skills
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="certificates"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Certificates
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="stats"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Stats
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="resume"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Resume
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="contact"
-              smooth={true}
-              duration={500}
-              spy={true}
-              activeClass="active"
-              onClick={closeMobileMenu}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
+      {/* --- Center Navigation Links --- */}
+      <div
+        className="nav-links"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "1.8rem",
+          alignItems: "center",
+          flexGrow: 1,
+        }}
+      >
+        {links.map((l) => (
+          <NavLink
+            key={l.to}
+            to={l.to}
+            end
+            className={({ isActive }) =>
+              isActive ? "active-link" : "inactive-link"
+            }
+            style={{
+              position: "relative",
+              fontSize: "0.95rem",
+              textDecoration: "none",
+              color: "white",
+              fontWeight: 500,
+            }}
+          >
+            {({ isActive }) => (
+              <motion.div
+                whileHover={{
+                  scale: 1.1,
+                  color: "var(--accent)",
+                  textShadow: "0 0 8px var(--accent)",
+                }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <motion.span
+                  animate={{
+                    color: isActive ? "var(--accent)" : "white",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {l.label}
+                </motion.span>
+                {isActive && (
+                  <motion.div
+                    layoutId="underline"
+                    className="underline"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      width: "70%",
+                      height: "2px",
+                      marginTop: "4px",
+                      borderRadius: "1px",
+                      backgroundColor: "var(--accent)",
+                      boxShadow: "0 0 6px var(--accent)",
+                    }}
+                  />
+                )}
+              </motion.div>
+            )}
+          </NavLink>
+        ))}
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

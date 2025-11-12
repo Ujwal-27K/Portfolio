@@ -1,31 +1,40 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Projects from './components/Projects';
-import Gallery from './components/Gallery';
-import Skills from './components/Skills';
-import Certificates from './components/Certificates';
-import LeetCodeStats from './components/LeetCodeStats';
-import Resume from './components/Resume';
-import Contact from './components/Contact';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
+import Gallery from './pages/Gallery'
+import Certificates from './pages/Certificates'
+import Blog from './pages/Blog'
+import Resume from './pages/Resume'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
+import SkillNetwork from './pages/Skills'  
+import Stats from './pages/Stats';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Navbar />
-      <main>
-        <Home />
-        <Projects />
-        {/* Gallery is maintained in code but hidden from UI */}
-        <Gallery />
-        <Skills />
-        <Certificates />
-        <LeetCodeStats />
-        <Resume />
-        <Contact />
+      <main style={{ flex: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/skills" element={<SkillNetwork />} />
+          <Route path="/certificates" element={<Certificates />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/stats" element={<Stats />} />
+          <Route path="/about" element={<About />} /> {/* ✅ fixed lowercase */}
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
+      <footer className="footer">
+        © {new Date().getFullYear()} Ujwal Khairnar — Built with React
+      </footer>
     </div>
-  );
+  )
 }
-
-export default App;
