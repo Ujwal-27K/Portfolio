@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
-import githubLogo from "git add ./github.png";
-import linkedinLogo from "git add ./linkedin.png";
-import gmailLogo from "git add ./gmail.png";
+import githubLogo from "/github.png";
+import linkedinLogo from "/linkedin.png";
+import gmailLogo from "/gmail.png";
 
 export default function Contact() {
   const [form, setForm] = useState({
