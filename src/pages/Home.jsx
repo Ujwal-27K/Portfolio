@@ -2,13 +2,13 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 // 🖼️ Import Assets
-import photo from '/photo.png'
-import githubLogo from '/github.png'
-import linkedinLogo from '/linkedin.png'
-import gmailLogo from '/gmail.png'
-import whatsappLogo from '/whatsapp.png'
-import instagramLogo from '/insta.png'
-import facebookLogo from '/facebook.png'
+const photo = "/photo.png";
+const githubLogo = "/github.png";
+const linkedinLogo = "/linkedin.png";
+const gmailLogo = "/gmail.png";
+const whatsappLogo = "/whatsapp.png";
+const instagramLogo = "/insta.png";
+const facebookLogo = "/facebook.png";
 
 export default function Home() {
   const professions = [
