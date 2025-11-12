@@ -46,7 +46,7 @@ const PROJECTS = [
   {
     title: "💼 Portfolio Website",
     desc: "Responsive developer portfolio showcasing projects, skills, and experience with smooth animations and modern UI interactions.",
-    ss: "https://res.cloudinary.com/dx42z76dx/image/upload/v1756651170/Screenshot_2025-08-31_200910_ybau3z.png",
+    ss: "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963856/Screenshot_2025-11-12_214032_s7bj1q.png",
     tech: ["JavaScript", "CSS3", "HTML5"],
     live: "https://portfolio-eta-blush-qsq9j1ksqi.vercel.app",
     code: "https://github.com/Ujwal-27K/Portfolio",
