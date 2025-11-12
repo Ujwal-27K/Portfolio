@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
-import githubLogo from "/github.png";
-import linkedinLogo from "/linkedin.png";
-import gmailLogo from "/gmail.png";
-
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
@@ -53,14 +49,23 @@ export default function Contact() {
     }
   };
 
+  // ✅ Static file URLs (served from /public)
   const quickLinks = [
     {
-      img: linkedinLogo,
+      img: "/linkedin.png",
       title: "LinkedIn",
       link: "https://www.linkedin.com/in/ujwal-khairnar",
     },
-    { img: githubLogo, title: "GitHub", link: "https://github.com/Ujwal-27K" },
-    { img: gmailLogo, title: "Email", link: "mailto:ujwal.khairnar.uk@gmail.com" },
+    {
+      img: "/github.png",
+      title: "GitHub",
+      link: "https://github.com/Ujwal-27K",
+    },
+    {
+      img: "/gmail.png",
+      title: "Email",
+      link: "mailto:ujwal.khairnar.uk@gmail.com",
+    },
   ];
 
   return (
