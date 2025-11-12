@@ -52,17 +52,17 @@ export default function Contact() {
   // ✅ Static file URLs (served from /public)
   const quickLinks = [
     {
-      img: "/linkedin.png",
+      img: "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/linkedin_ozhynj.png",
       title: "LinkedIn",
       link: "https://www.linkedin.com/in/ujwal-khairnar",
     },
     {
-      img: "/github.png",
+      img: "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/github_liyt9b.png",
       title: "GitHub",
       link: "https://github.com/Ujwal-27K",
     },
     {
-      img: "/gmail.png",
+      img: "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/gmail_iqfgy0.png",
       title: "Email",
       link: "mailto:ujwal.khairnar.uk@gmail.com",
     },

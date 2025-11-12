@@ -3,12 +3,12 @@ import { motion } from 'framer-motion'
 
 // 🖼️ Import Assets
 const photo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1756643349/me_photo_pfni9n.png";
-const githubLogo = "/github.png";
-const linkedinLogo = "/linkedin.png";
-const gmailLogo = "/gmail.png";
-const whatsappLogo = "/whatsapp.png";
-const instagramLogo = "/insta.png";
-const facebookLogo = "/facebook.png";
+const githubLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/github_liyt9b.png";
+const linkedinLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/linkedin_ozhynj.png";
+const gmailLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/gmail_iqfgy0.png";
+const whatsappLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963368/whatsapp_qfayvp.png";
+const instagramLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963362/insta_avstsn.png";
+const facebookLogo = "https://res.cloudinary.com/dx42z76dx/image/upload/v1762963363/facebook_arruo0.png";
 
 export default function Home() {
   const professions = [
