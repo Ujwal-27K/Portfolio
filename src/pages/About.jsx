@@ -140,7 +140,7 @@ const AboutMe = () => {
                   Maharashtra
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>
-                  B.E. | GPA: 9.0
+                  B.E. | GPA: 8.09
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>2021 – 2025</p>
               </div>
@@ -229,7 +229,7 @@ const AboutMe = () => {
                   Maharashtra
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>
-                  Maharashtra Board | Percentage: 89%
+                  Maharashtra Board | Percentage: 89.67%
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>Completed in 2019</p>
               </div>
