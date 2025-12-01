@@ -2,7 +2,7 @@
 
 A modern, responsive, and interactive portfolio website built using **React + Vite**, showcasing my projects, technical skills, certifications, and achievements as a **Full Stack Developer** and **AI Enthusiast**.
 
-![Portfolio Preview](https://res.cloudinary.com/dx42z76dx/image/upload/v1756651170/Screenshot_2025-08-31_200910_ybau3z.png)
+![Portfolio Preview](https://res.cloudinary.com/dx42z76dx/image/upload/v1762963856/Screenshot_2025-11-12_214032_s7bj1q.png)
 
 ---
 
