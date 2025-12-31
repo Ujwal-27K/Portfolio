@@ -25,6 +25,13 @@ const CERTS = {
       img: "https://res.cloudinary.com/dx42z76dx/image/upload/v1757236028/SQL_INTERMEDIATE_gqmspt.png",
       link: "https://www.hackerrank.com/certificates/1ad4f32511f0",
     },
+    {
+      title: "5-Day AI Agents Intensive Course with Google",
+      org: "Kaggle",
+      date: "2025",
+      img: "https://res.cloudinary.com/dx42z76dx/image/upload/v1767162301/5-Day_AI_Agents_Intensive_Course_with_Google_w4awby.png",
+      link: "https://www.kaggle.com/certification/badges/ujwalkhairnar27/105",
+    },
   ],
   other: [
     {
